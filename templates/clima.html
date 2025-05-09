@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Clima en {{ ciudad }}
+{% endblock %}
+
+{% block content %}
+    <h2>Clima actual en {{ ciudad }}</h2>
+
+    {% if clima %}
+        <p><strong>Temperatura:</strong> {{ clima.temperature }} °C</p>
+        <p><strong>Viento:</strong> {{ clima.windspeed }} km/h</p>
+        <p><strong>Dirección del viento:</strong> {{ clima.winddirection }}°</p>
+
+        {% if clima.weathercode == 0 %}
+            <p><strong>Condiciones:</strong> Despejado</p>
+        {% elif clima.weathercode == 1 %}
+            <p><strong>Condiciones:</strong> Mayormente despejado</p>
+        {% elif clima.weathercode == 2 %}
+            <p><strong>Condiciones:</strong> Parcialmente nublado</p>
+        {% elif clima.weathercode == 3 %}
+            <p><strong>Condiciones:</strong> Nublado</p>
+        {% else %}
+            <p><strong>Condiciones:</strong> Código desconocido ({{ clima.weathercode }})</p>
+        {% endif %}
+
+    {% else %}
+        <p>No se pudo obtener el clima.</p>
+    {% endif %}
+
+    <p><a href="/">← Volver a la lista de ciudades</a></p>
+{% endblock %}

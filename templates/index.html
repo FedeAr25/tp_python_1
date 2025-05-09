@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Lista de ciudades
+{% endblock %}
+
+{% block content %}
+<h1>Lista de ciudades</h1>
+<ul>
+    {% for ciudad in ciudades %}
+    <li><a href="{{ url_for('clima') }}?ciudad={{ ciudad }}">{{ ciudad }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
